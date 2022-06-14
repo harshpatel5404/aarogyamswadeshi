@@ -91,6 +91,9 @@ class _HomeState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    if (productController.productlist.isEmpty) {
+      firstLoad();
+    }
     productController.scontroller.addListener(() {
       if (productController.scontroller.position.maxScrollExtent ==
           productController.scontroller.position.pixels) {
@@ -138,19 +141,21 @@ class _HomeState extends State<HomePage> {
         automaticallyImplyLeading: false,
         backgroundColor: kPrimaryColor,
         title: Container(
+          alignment: Alignment.center,
           width: Get.width * 0.9,
           height: 40,
           decoration: BoxDecoration(
               color: Colors.white, borderRadius: BorderRadius.circular(5)),
           child: Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.only(left: 10, right: 10),
               child: TextFormField(
                 controller: searchController,
                 onFieldSubmitted: (value) {
                   serchPressed();
                 },
                 decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(top: 3),
                     suffixIcon: IconButton(
                       icon: Icon(
                         Icons.search,
@@ -158,8 +163,10 @@ class _HomeState extends State<HomePage> {
                       ),
                       onPressed: () {
                         serchPressed();
+                        FocusScope.of(context).unfocus();
                       },
                     ),
+                    hintStyle: TextStyle(fontSize: 14),
                     hintText: 'Search for Category, Products...',
                     border: InputBorder.none),
               ),
@@ -540,7 +547,7 @@ class _HomeState extends State<HomePage> {
                   horizontal: MediaQuery.of(context).size.width * 0.05,
                   vertical: 5),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -552,25 +559,25 @@ class _HomeState extends State<HomePage> {
                           color: Colors.black),
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      productController.productlist.isNotEmpty
-                          ? Get.to(ViewAllProductScreen(
-                              title: "All Products",
-                              datalist: productController.productlist,
-                            ))
-                          : Fluttertoast.showToast(
-                              msg: "No Products Find !",
-                              backgroundColor: Colors.red[300]);
-                    },
-                    child: Text(
-                      "View All",
-                      style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: kPrimaryColor,
-                          fontSize: 15),
-                    ),
-                  )
+                  // InkWell(
+                  //   onTap: () {
+                  //     productController.productlist.isNotEmpty
+                  //         ? Get.to(ViewAllProductScreen(
+                  //             title: "All Products",
+                  //             datalist: productController.productlist,
+                  //           ))
+                  //         : Fluttertoast.showToast(
+                  //             msg: "No Products Find !",
+                  //             backgroundColor: Colors.red[300]);
+                  //   },
+                  //   child: Text(
+                  //     "View All",
+                  //     style: TextStyle(
+                  //         fontWeight: FontWeight.w500,
+                  //         color: kPrimaryColor,
+                  //         fontSize: 15),
+                  //   ),
+                  // )
                 ],
               ),
             ),

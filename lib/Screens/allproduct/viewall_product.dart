@@ -44,7 +44,7 @@ class _ViewAllProductScreenState extends State<ViewAllProductScreen> {
                             crossAxisSpacing:
                                 MediaQuery.of(context).size.width * 0.025,
                             mainAxisExtent:
-                                MediaQuery.of(context).size.height * 0.30,
+                                MediaQuery.of(context).size.height * 0.32,
                             crossAxisCount: 2),
                         itemBuilder: (BuildContext context, index) {
                           String imgString =
@@ -83,8 +83,8 @@ class _ViewAllProductScreenState extends State<ViewAllProductScreen> {
                                     child: Text(
                                       widget.datalist[index]["productName"],
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 15,
                                           color:
                                               Colors.black54.withOpacity(0.6)),
                                       maxLines: 2,
@@ -113,8 +113,8 @@ class _ViewAllProductScreenState extends State<ViewAllProductScreen> {
                                           ? "Available"
                                           : "Not Available",
                                       style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 14),
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 13),
                                     )),
                                   ),
                                 ],

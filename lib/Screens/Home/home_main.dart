@@ -55,6 +55,7 @@ class _MainHomeState extends State<MainScreen> {
     getUserDetails();
     // getAllproduct();
     firstLoad();
+    
     getsubategory();
     getImages();
     getCategory();

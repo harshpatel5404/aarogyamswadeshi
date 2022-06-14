@@ -42,7 +42,7 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                           crossAxisSpacing:
                               MediaQuery.of(context).size.width * 0.025,
                           mainAxisExtent:
-                              MediaQuery.of(context).size.height * 0.30,
+                              MediaQuery.of(context).size.height * 0.32,
                           crossAxisCount: 2),
                       itemBuilder: (BuildContext context, index) {
                         String imgString = homecontroller
@@ -84,9 +84,9 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                                             .categoryviseProductlist[index]
                                         ["productName"],
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 12,
-                                        color: Colors.black54.withOpacity(0.6)),
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15,
+                                        color: Colors.black),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                   ),
@@ -99,7 +99,7 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                                       "₹ ${homecontroller.categoryviseProductlist[index]["price"]}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 12,
+                                          fontSize: 13,
                                           color: kPrimaryColor),
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
@@ -114,8 +114,8 @@ class _ProductCategoryScreenState extends State<ProductCategoryScreen> {
                                         ? "Available"
                                         : "Not Available",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 14),
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 13),
                                   )),
                                 ),
                               ],

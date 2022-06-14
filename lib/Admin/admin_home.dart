@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:aarogyamswadeshi/Admin/Slider/add_slider.dart';
 import 'package:aarogyamswadeshi/Admin/category/category_page.dart';
 import 'package:aarogyamswadeshi/Admin/product/product_page.dart';
 import 'package:aarogyamswadeshi/Admin/subcategory/subcategory_page.dart';
 import 'package:aarogyamswadeshi/Admin/widget/drawer.dart';
 import 'package:aarogyamswadeshi/Constants/constants.dart';
-import 'package:aarogyamswadeshi/Screens/Home/home_page.dart';
 import 'package:aarogyamswadeshi/Services/admin_services.dart';
 import 'package:aarogyamswadeshi/Services/category_service.dart';
 import 'package:aarogyamswadeshi/Services/product_services.dart';
@@ -45,7 +42,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
           title: Text(
             "Admin Dashboard",
             style: TextStyle(
-                fontSize: 25, fontWeight: FontWeight.w700, color: Colors.white),
+                fontSize: 25, fontWeight: FontWeight.w500, color: Colors.white),
           ),
         ),
         drawer: Drawerbar(),
@@ -78,7 +75,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
-                                fontWeight: FontWeight.w900),
+                                fontWeight: FontWeight.w500),
                           ),
                           Container(
                             height: 120,
@@ -139,7 +136,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 27,
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w400),
                             ),
                             // Container(
                             //   height: 50,
@@ -199,7 +196,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 27,
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w400),
                             ),
                             // Container(
                             //   height: 50,
@@ -259,7 +256,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 27,
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w400),
                             ),
                             // Container(
                             //   height: 50,
@@ -319,7 +316,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                               style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 27,
-                                  fontWeight: FontWeight.w800),
+                                  fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),
