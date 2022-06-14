@@ -72,7 +72,7 @@ class _PasscodeState extends State<Passcode> {
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.w500),
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         otpFieldStyle: OtpFieldStyle(
                           borderColor: Colors.white,

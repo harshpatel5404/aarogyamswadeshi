@@ -100,7 +100,7 @@ class _ProductPageState extends State<ProductPage> {
                             //     style: TextStyle(
                             //         fontSize: 15,
                             //         color: Colors.black,
-                            //         fontWeight: FontWeight.bold),
+                            //         fontWeight: fontweight.w500),
                             //     textAlign: TextAlign.start,
                             //   ),
                             // ),

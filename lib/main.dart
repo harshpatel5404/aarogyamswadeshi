@@ -44,6 +44,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
+        fontFamily: 'Poppins',
+        
       ),
       home: SplashScreen(),
       builder: EasyLoading.init(),

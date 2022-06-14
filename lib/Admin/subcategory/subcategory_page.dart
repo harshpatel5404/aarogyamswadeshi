@@ -39,7 +39,6 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
         backgroundColor: kPrimaryColor,
       ),
       drawer: Drawerbar(),
-
       body: Obx(() {
         if (subcategoryController.subcategorylist.isNotEmpty) {
           return ListView.builder(
@@ -100,7 +99,7 @@ class _SubCategoryPageState extends State<SubCategoryPage> {
                             //     style: TextStyle(
                             //         fontSize: 15,
                             //         color: Colors.black,
-                            //         fontWeight: FontWeight.bold),
+                            //         fontWeight: fontweight.w500),
                             //     textAlign: TextAlign.start,
                             //   ),
                             // ),

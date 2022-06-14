@@ -74,7 +74,6 @@ class _HomeCategoryProductDescriptionState
     String imgString = widget.productdatalist["productimagepath"];
     Uint8List decodedbytes = base64.decode(imgString);
 
-
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -164,7 +163,7 @@ class _HomeCategoryProductDescriptionState
                             style: TextStyle(
                                 color: kPrimaryColor,
                                 fontSize: 21,
-                                fontWeight: FontWeight.w700),
+                                fontWeight: FontWeight.w500),
                           ),
                           // InkWell(
                           //   onTap: () {},
@@ -190,8 +189,9 @@ class _HomeCategoryProductDescriptionState
                             Text(
                               widget.productdatalist["productName"],
                               style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black54.withOpacity(0.6)),
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.black),
                             )
                           ],
                         )),
@@ -208,8 +208,8 @@ class _HomeCategoryProductDescriptionState
                               ? "Available"
                               : "Not Available",
                           style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                               color: Colors.black),
                         )),
                     SizedBox(
@@ -225,7 +225,6 @@ class _HomeCategoryProductDescriptionState
                     SizedBox(
                       height: 15,
                     ),
-
                     //Description section
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
@@ -236,7 +235,7 @@ class _HomeCategoryProductDescriptionState
                             "Description",
                             style: TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w500,
                                 color: kPrimaryColor),
                           )),
                     ),

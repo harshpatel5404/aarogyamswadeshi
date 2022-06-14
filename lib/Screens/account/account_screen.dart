@@ -90,7 +90,7 @@ class _AccountScreenState extends State<AccountScreen> {
               Text(
                 "Account Details",
                 style: TextStyle(
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w500,
                   fontSize: 22,
                 ),
               ),
@@ -419,8 +419,6 @@ class _AccountScreenState extends State<AccountScreen> {
                         formkey.currentState.save();
                         Map userdata = {
                           "name": fnameController.text,
-                          // "sname": snameController.text,
-                          // "lname": lnameController.text,
                           "mobileNo": mobileController.text,
                           "city": cityController.text,
                           "address": adressController.text,

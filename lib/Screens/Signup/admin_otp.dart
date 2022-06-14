@@ -116,7 +116,7 @@ class _AdminOtpState extends State<AdminOtp> {
                   'Verification',
                   style: TextStyle(
                     fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
@@ -126,7 +126,7 @@ class _AdminOtpState extends State<AdminOtp> {
                   "We will send otp to your\n${widget.email}",
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black38,
                   ),
                   textAlign: TextAlign.center,
@@ -242,7 +242,7 @@ class _AdminOtpState extends State<AdminOtp> {
                             "Forgot password ?",
                             style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               color: Colors.blue[600],
                             ),
                             textAlign: TextAlign.center,
@@ -318,7 +318,7 @@ class _AdminOtpState extends State<AdminOtp> {
                   "If you didn\'t receive a code!",
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black38,
                   ),
                   textAlign: TextAlign.center,
@@ -341,7 +341,7 @@ class _AdminOtpState extends State<AdminOtp> {
                               "Resend Code",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                                 color: kPrimaryColor,
                               ),
                               textAlign: TextAlign.center,
@@ -361,7 +361,7 @@ class _AdminOtpState extends State<AdminOtp> {
                             "Resend Code",
                             style: TextStyle(
                               fontSize: 15,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               color: Colors.green[300],
                             ),
                             textAlign: TextAlign.center,

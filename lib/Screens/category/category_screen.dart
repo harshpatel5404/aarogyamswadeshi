@@ -145,7 +145,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                         mainAxisExtent: 110, crossAxisCount: 3),
                                 itemBuilder: (BuildContext context, index) {
                                   String imgString =
-                                      cuurentlist[index]["imagePath"];
+                                      cuurentlist[index]["imagepath"];
                                   Uint8List decodedbytes =
                                       base64.decode(imgString);
 

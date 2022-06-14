@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:aarogyamswadeshi/Admin/product/product_controller.dart';
 import 'package:aarogyamswadeshi/Screens/Home/home_controller.dart';
 import 'package:aarogyamswadeshi/Services/pref_manager.dart';
+import 'package:aarogyamswadeshi/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -249,10 +250,10 @@ Future getSearch(String value) async {
       List searchdatalist = data;
       print(searchdatalist);
       homecontroller.searchlist.clear();
-      if (data == []) {
-        print("object");
+      if (searchdatalist.isEmpty) {
         return "noproduct";
       } else if (searchdatalist[0]["type"] != "Product") {
+        firstLoad();
         homecontroller.searchlist.value = data;
       } else {
         productController.productlist.clear();
@@ -284,6 +285,7 @@ Future getSearchProduct(String value) async {
     );
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
+      productController.hasNextPage.value = true;
       productController.productlist.clear();
       productController.productlist.value = data;
       print("get search productss");
@@ -299,6 +301,9 @@ Future getSearchProduct(String value) async {
 }
 
 void firstLoad() async {
+  productController.limit.value = 4;
+  productController.pageNumber.value = 1;
+  productController.hasNextPage.value = true;
   var token = await getToken();
   productController.productlist.clear();
   productController.isFirstLoadRunning.value = true;
@@ -325,17 +330,16 @@ void firstLoad() async {
 }
 
 void loadMore() async {
-  print("load more data call");
+  // print("load more data call");
   var token = await getToken();
-  var d = productController.scontroller.position.extentAfter;
-  print(productController.scontroller.position.maxScrollExtent);
   if (productController.hasNextPage.value == true &&
       productController.isFirstLoadRunning.value == false &&
       productController.isLoadMoreRunning.value == false &&
+      // productController.scontroller.position.extentAfter < 300) {
       productController.scontroller.position.maxScrollExtent > 0) {
     productController.isLoadMoreRunning.value =
         true; // Display a progress indicator at the bottom
-
+    productController.limit.value =4 ;
     productController.pageNumber.value += 1;
     try {
       final res = await http.get(
@@ -349,6 +353,7 @@ void loadMore() async {
       );
       var data = json.decode(res.body);
       List fetchedPosts = data["data"];
+
       if (fetchedPosts.length > 0) {
         productController.productlist.addAll(fetchedPosts);
       } else {

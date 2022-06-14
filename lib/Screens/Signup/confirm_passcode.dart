@@ -42,7 +42,7 @@ class _ConfirmPasscodeState extends State<ConfirmPasscode> {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: OTPTextField(
                   length: 4,
-                   obscureText: true,
+                  obscureText: true,
                   width: MediaQuery.of(context).size.width,
                   textFieldAlignment: MainAxisAlignment.spaceAround,
                   fieldWidth: 55,
@@ -51,7 +51,7 @@ class _ConfirmPasscodeState extends State<ConfirmPasscode> {
                   style: TextStyle(
                       fontSize: 17,
                       color: Colors.white,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w500),
                   contentPadding: EdgeInsets.symmetric(vertical: 15),
                   otpFieldStyle: OtpFieldStyle(
                     borderColor: Colors.white,
@@ -70,7 +70,7 @@ class _ConfirmPasscodeState extends State<ConfirmPasscode> {
                     });
                   }),
             ),
-            
+
             // CodeInput(
             //     length: 4,
             //     keyboardType: TextInputType.number,
@@ -104,7 +104,6 @@ class _ConfirmPasscodeState extends State<ConfirmPasscode> {
                       style: TextStyle(color: Colors.black),
                     ),
                     onPressed: () {
-                      
                       // print(passcode);
                       if (cpasscode.length != 4) {
                         Fluttertoast.showToast(msg: "Please Enter passcode");

@@ -111,7 +111,7 @@ class _OtpState extends State<Otp> {
                   'Verification',
                   style: TextStyle(
                     fontSize: 22,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
                 SizedBox(
@@ -121,7 +121,7 @@ class _OtpState extends State<Otp> {
                   "We will send otp to your\n${widget.email}",
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black38,
                   ),
                   textAlign: TextAlign.center,
@@ -223,7 +223,7 @@ class _OtpState extends State<Otp> {
                   "If you didn\'t receive a code!",
                   style: TextStyle(
                     fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     color: Colors.black38,
                   ),
                   textAlign: TextAlign.center,
@@ -246,7 +246,7 @@ class _OtpState extends State<Otp> {
                               "Resend Code",
                               style: TextStyle(
                                 fontSize: 15,
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w500,
                                 color: kPrimaryColor,
                               ),
                               textAlign: TextAlign.center,
@@ -266,7 +266,7 @@ class _OtpState extends State<Otp> {
                             "Resend Code",
                             style: TextStyle(
                               fontSize: 15,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               color: Colors.green[300],
                             ),
                             textAlign: TextAlign.center,

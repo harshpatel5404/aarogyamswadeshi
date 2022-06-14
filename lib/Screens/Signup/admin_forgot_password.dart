@@ -49,7 +49,7 @@ class _ForgotpasswordScreenState extends State<ForgotpasswordScreen> {
                 Text(
                   "FORGOT PASSWORD",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 20,
                   ),
                 ),

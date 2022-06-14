@@ -54,7 +54,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 Text(
                   "USER INFORMATION",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                     fontSize: 20,
                   ),
                 ),
@@ -463,7 +463,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                                   backgroundColor: Colors.red);
                             }
                           });
-                       
                         }
                       },
                       style: ElevatedButton.styleFrom(
@@ -480,7 +479,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 SizedBox(height: size.height * 0.08),
               ],
             ),
-         
           ),
         ),
       ),

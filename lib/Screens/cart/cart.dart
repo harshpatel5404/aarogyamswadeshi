@@ -54,7 +54,7 @@ class _CartState extends State<Cart> {
           title: Text(
             "Shopping Cart",
             style:
-                TextStyle(color: Colors.black87, fontWeight: FontWeight.bold),
+                TextStyle(color: Colors.black87, fontWeight: FontWeight.w500),
           ),
           centerTitle: true,
         ),
@@ -112,7 +112,7 @@ class _CartState extends State<Cart> {
                                     "₹ ${cartController.cartlist[index]["price"]}",
                                     style: TextStyle(
                                         fontSize: 15,
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w500,
                                         color: kPrimaryColor),
                                   ),
                                   SizedBox(
@@ -136,8 +136,8 @@ class _CartState extends State<Cart> {
                                                             BorderRadius
                                                                 .circular(15),
                                                       ),
-                                                      content:
-                                                          Text("Remove Product"),
+                                                      content: Text(
+                                                          "Remove Product"),
                                                       actions: <Widget>[
                                                         ElevatedButton(
                                                           child: Text("Close"),
@@ -370,18 +370,17 @@ class _CartState extends State<Cart> {
               child: Center(
                   child: Text(
                 "Your Cart Is Empty !",
+                textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.red[300], fontSize: 16),
               )),
             );
           } else if (!cartController.iscarterror.value) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Center(
-                  child: Text(
-                "Somthing Went wrong , Please Try Again !",
-                style: TextStyle(color: Colors.red[300], fontSize: 16),
-              )),
-            );
+            return Center(
+                child: Text(
+              "Somthing Went wrong, Please Try Again !",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.red[300], fontSize: 16),
+            ));
           } else {
             return Center(
               child: CircularProgressIndicator(
@@ -405,7 +404,7 @@ class _CartState extends State<Cart> {
           height: Get.height * 0.10,
           width: MediaQuery.of(context).size.width,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -415,15 +414,15 @@ class _CartState extends State<Cart> {
                     Text(
                       "Total",
                       style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
                           color: Colors.black),
                     ),
                     Obx(() => Text(
                           "${cartController.carttotal.value.toStringAsFixed(2)}",
                           style: TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w500,
                               color: Colors.red),
                         )),
                   ],
