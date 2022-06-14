@@ -1,24 +1,14 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:aarogyamswadeshi/Constants/constants.dart';
 import 'package:aarogyamswadeshi/Screens/cart/cart_controller.dart';
-import 'package:aarogyamswadeshi/Screens/cart/cart_model.dart';
-import 'package:aarogyamswadeshi/Screens/desc/buynow_bottom.dart';
-import 'package:aarogyamswadeshi/Screens/desc/mail.dart';
-import 'package:aarogyamswadeshi/Screens/desc/pdf_api.dart';
-import 'package:aarogyamswadeshi/Screens/desc/pdf_invoice_api.dart';
 import 'package:aarogyamswadeshi/Services/cart_service.dart';
-import 'package:aarogyamswadeshi/Services/pref_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import '../desc/invoice.dart';
 
 class Cart extends StatefulWidget {
   Cart({Key key}) : super(key: key);
@@ -28,7 +18,6 @@ class Cart extends StatefulWidget {
 }
 
 class _CartState extends State<Cart> {
-  List<CartModel> cartorder = [];
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -47,6 +36,7 @@ class _CartState extends State<Cart> {
 
   @override
   Widget build(BuildContext context) {
+    print(cartController.cartlist);
     return Scaffold(
         appBar: AppBar(
           elevation: 0.5,

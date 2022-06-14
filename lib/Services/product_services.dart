@@ -258,6 +258,7 @@ Future getSearch(String value) async {
       } else {
         productController.productlist.clear();
         getSearchProduct(value);
+        return "product";
       }
 
       print("get search");
@@ -339,7 +340,7 @@ void loadMore() async {
       productController.scontroller.position.maxScrollExtent > 0) {
     productController.isLoadMoreRunning.value =
         true; // Display a progress indicator at the bottom
-    productController.limit.value =4 ;
+    productController.limit.value = 4;
     productController.pageNumber.value += 1;
     try {
       final res = await http.get(

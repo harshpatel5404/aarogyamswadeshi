@@ -8,6 +8,7 @@ import 'package:aarogyamswadeshi/Services/admin_services.dart';
 import 'package:aarogyamswadeshi/Services/category_service.dart';
 import 'package:aarogyamswadeshi/Services/product_services.dart';
 import 'package:aarogyamswadeshi/Services/subcategory_service.dart';
+import 'package:aarogyamswadeshi/main.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:aarogyamswadeshi/Admin/category/category_controller.dart';
@@ -77,14 +78,17 @@ class _HomeState extends State<HomePage> {
     },
   ];
   Timer timer;
-
+  RxBool isSearch = false.obs;
+  RxBool isProduct = false.obs;
+  Icon searchicon = Icon(Icons.search);
   void serchPressed() async {
     homecontroller.searchlist.clear();
     await getSearch(searchController.text).then((value) {
       if (value == "noproduct") {
         Fluttertoast.showToast(msg: "No Products Found!");
+      } else if (value == "product") {
+        isProduct.value = true;
       }
-      searchController.text = "";
     });
   }
 
@@ -113,7 +117,6 @@ class _HomeState extends State<HomePage> {
   }
 
   void _onRefresh() async {
-    // getAllproduct();
     getsubategory();
     getCategory();
     getImages().then((value) {
@@ -151,21 +154,30 @@ class _HomeState extends State<HomePage> {
               padding: EdgeInsets.only(left: 10, right: 10),
               child: TextFormField(
                 controller: searchController,
+                onTap: () {
+                  isSearch.value = true;
+                },
                 onFieldSubmitted: (value) {
                   serchPressed();
                 },
                 decoration: InputDecoration(
                     contentPadding: EdgeInsets.only(top: 3),
-                    suffixIcon: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        serchPressed();
-                        FocusScope.of(context).unfocus();
-                      },
-                    ),
+                    suffixIcon: Obx(() => IconButton(
+                          icon: isSearch.value
+                              ? InkWell(
+                                  onTap: () {
+                                    isSearch.value = false;
+                                    searchController.text = "";
+                                    homecontroller.searchlist.clear();
+                                    isProduct.value ? firstLoad() : null;
+                                  },
+                                  child: Icon(Icons.close,color: Colors.black54,))
+                              : Icon(Icons.search,color: Colors.black54),
+                          onPressed: () {
+                            serchPressed();
+                            FocusScope.of(context).unfocus();
+                          },
+                        )),
                     hintStyle: TextStyle(fontSize: 14),
                     hintText: 'Search for Category, Products...',
                     border: InputBorder.none),

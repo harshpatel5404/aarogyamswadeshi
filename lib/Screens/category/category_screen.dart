@@ -148,12 +148,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                       cuurentlist[index]["imagepath"];
                                   Uint8List decodedbytes =
                                       base64.decode(imgString);
-
                                   return InkWell(
                                     onTap: () async {
                                       await getProductbysubcategory(
                                           cuurentlist[index]["subcategoryId"]);
-
                                       Get.to(ViewAllProductScreen(
                                           title:
                                               "Products Of ${cuurentlist[index]["subCategoryName"]} ",
