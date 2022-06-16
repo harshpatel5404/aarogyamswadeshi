@@ -8,7 +8,7 @@ class ProductController extends GetxController {
   RxBool isalldataload = true.obs;
 
   RxInt pageNumber = 1.obs;
-  RxInt limit = 4.obs;
+  RxInt limit = 6.obs;
 
   RxBool hasNextPage = true.obs;
   ScrollController scontroller = ScrollController();

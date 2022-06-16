@@ -4,7 +4,9 @@ import 'dart:typed_data';
 
 import 'package:aarogyamswadeshi/Admin/product/product_controller.dart';
 import 'package:aarogyamswadeshi/Admin/subcategory/subcategory_controller.dart';
+import 'package:aarogyamswadeshi/Screens/desc/buynow_bottom.dart';
 import 'package:aarogyamswadeshi/Services/admin_services.dart';
+import 'package:aarogyamswadeshi/Services/cart_service.dart';
 import 'package:aarogyamswadeshi/Services/category_service.dart';
 import 'package:aarogyamswadeshi/Services/product_services.dart';
 import 'package:aarogyamswadeshi/Services/subcategory_service.dart';
@@ -38,7 +40,7 @@ class _HomeState extends State<HomePage> {
       RefreshController(initialRefresh: false);
 
   TextEditingController searchController = TextEditingController();
-  List scrollableImages = [];
+
   List colorlist = [
     {
       "first": Color(0xffffafbd),
@@ -104,31 +106,16 @@ class _HomeState extends State<HomePage> {
         loadMore();
       }
     });
-
-    getImages().then((value) {
-      scrollableImages.clear();
-      for (var i = 0; i < sliderController.imgList.length; i++) {
-        String imgString = sliderController.imgList[i]["galleryImage"];
-        Uint8List decodedbytes = base64.decode(imgString);
-        scrollableImages.add(decodedbytes);
-        setState(() {});
-      }
-    });
-  }
-
-  void _onRefresh() async {
-    getsubategory();
-    getCategory();
-    getImages().then((value) {
-      scrollableImages.clear();
-      for (var i = 0; i < sliderController.imgList.length; i++) {
-        String imgString = sliderController.imgList[i]["galleryImage"];
-        Uint8List decodedbytes = base64.decode(imgString);
-        scrollableImages.add(decodedbytes);
-        setState(() {});
-      }
-    });
-    _refreshController.refreshCompleted();
+    if (homecontroller.scrollableImages.isEmpty) {
+      getImages().then((value) {
+        homecontroller.scrollableImages.clear();
+        for (var i = 0; i < sliderController.imgList.length; i++) {
+          String imgString = sliderController.imgList[i]["galleryImage"];
+          Uint8List decodedbytes = base64.decode(imgString);
+          homecontroller.scrollableImages.add(decodedbytes);
+        }
+      });
+    }
   }
 
   @override
@@ -171,8 +158,11 @@ class _HomeState extends State<HomePage> {
                                     homecontroller.searchlist.clear();
                                     isProduct.value ? firstLoad() : null;
                                   },
-                                  child: Icon(Icons.close,color: Colors.black54,))
-                              : Icon(Icons.search,color: Colors.black54),
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Colors.black54,
+                                  ))
+                              : Icon(Icons.search, color: Colors.black54),
                           onPressed: () {
                             serchPressed();
                             FocusScope.of(context).unfocus();
@@ -274,8 +264,9 @@ class _HomeState extends State<HomePage> {
                     height: 0,
                   )),
 
-            sliderController.imgList.isNotEmpty
-                ? Padding(
+            Obx(() => homecontroller.scrollableImages.isNotEmpty
+                ?
+                 Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 5.0, vertical: 10),
                     child: CarouselSlider(
@@ -293,7 +284,7 @@ class _HomeState extends State<HomePage> {
                         enlargeCenterPage: true,
                         scrollDirection: Axis.horizontal,
                       ),
-                      items: scrollableImages.map((url) {
+                      items: homecontroller.scrollableImages.map((url) {
                         return Builder(
                           builder: (BuildContext context) {
                             return Container(
@@ -316,7 +307,7 @@ class _HomeState extends State<HomePage> {
                       }).toList(),
                     ),
                   )
-                : Container(),
+                : Container()),
 
             // Padding(
             //   padding:
@@ -611,8 +602,8 @@ class _HomeState extends State<HomePage> {
                         crossAxisSpacing:
                             MediaQuery.of(context).size.width * 0.025,
                         mainAxisExtent:
-                            MediaQuery.of(context).size.height * 0.32,
-                        crossAxisCount: 2),
+                            MediaQuery.of(context).size.height * 0.25,
+                        crossAxisCount: 3),
                     itemBuilder: (BuildContext context, index) {
                       String imgString = productController.productlist[index]
                           ["productimagepath"];
@@ -632,16 +623,17 @@ class _HomeState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
+                                alignment: Alignment.center,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.20,
-                                width: Get.width,
+                                    MediaQuery.of(context).size.height * 0.07,
+                                width: Get.width * 0.4,
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(10),
                                         topRight: Radius.circular(10)),
                                     child: Image.memory(
                                       decodedbytes,
-                                      fit: BoxFit.contain,
+                                      fit: BoxFit.cover,
                                     )),
                               ),
                               Padding(
@@ -684,6 +676,48 @@ class _HomeState extends State<HomePage> {
                                       fontSize: 12),
                                 )),
                               ),
+                              Center(
+                                child: TextButton(
+                                  onPressed: () {
+                                    Map data = {
+                                      "productID": productController
+                                          .productlist[index]["productId"],
+                                      "quantity": 1,
+                                    };
+                                    addTocart(data).then((value) {
+                                      if (value == "Added To Cart") {
+                                        Fluttertoast.showToast(
+                                            msg: value,
+                                            backgroundColor: Colors.green);
+                                      } else {
+                                        Fluttertoast.showToast(
+                                            msg: value,
+                                            backgroundColor: Colors.red);
+                                      }
+                                      getCart().then((value) {
+                                        cartController.getCarttotal();
+                                      });
+                                      Get.back();
+                                    });
+                                  },
+                                  child: Text(
+                                    "Add to cart",
+                                    style: TextStyle(
+                                        fontSize: 11, color: Colors.black),
+                                  ),
+                                  style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all<Color>(
+                                              Colors.white),
+                                      shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                          RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                              side: BorderSide(
+                                                  color: kPrimaryColor)))),
+                                ),
+                              )
                             ],
                           ),
                         ),

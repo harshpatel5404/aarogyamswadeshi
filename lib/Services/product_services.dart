@@ -260,7 +260,6 @@ Future getSearch(String value) async {
         getSearchProduct(value);
         return "product";
       }
-
       print("get search");
       print(data);
     } else {
@@ -302,7 +301,7 @@ Future getSearchProduct(String value) async {
 }
 
 void firstLoad() async {
-  productController.limit.value = 4;
+  productController.limit.value = 6;
   productController.pageNumber.value = 1;
   productController.hasNextPage.value = true;
   var token = await getToken();

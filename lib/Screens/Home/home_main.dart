@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:aarogyamswadeshi/Screens/Home/search_page.dart';
 import 'package:aarogyamswadeshi/Screens/cart/cart.dart';
 import 'package:aarogyamswadeshi/Screens/desc/buynow_bottom.dart';
@@ -17,6 +20,8 @@ import 'package:aarogyamswadeshi/Screens/category/category_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'home_controller.dart';
+
 class MainController extends GetxController {
   RxInt currentIndex = 0.obs;
 }
@@ -32,6 +37,7 @@ MainController MainHomeController = Get.put(MainController());
 
 class _MainHomeState extends State<MainScreen> {
   Controller controller = Get.put(Controller());
+  Homecontroller homecontroller = Get.put(Homecontroller());
   List pageList = [
     HomePage(),
     CategoryScreen(),
@@ -51,17 +57,24 @@ class _MainHomeState extends State<MainScreen> {
     // removeisAdmin();
     // removelogin();
     // removeuserid();
+
     controller.getConnect();
+     getImages().then((value) {
+        homecontroller.scrollableImages.clear();
+        for (var i = 0; i < sliderController.imgList.length; i++) {
+          String imgString = sliderController.imgList[i]["galleryImage"];
+          Uint8List decodedbytes = base64.decode(imgString);
+          homecontroller.scrollableImages.add(decodedbytes);
+        }
+      });
     getUserDetails();
-    // getAllproduct();
     firstLoad();
-    
     getsubategory();
-    getImages();
     getCategory();
     getCart().then((value) {
       cartController.getCarttotal();
     });
+   
   }
 
   @override

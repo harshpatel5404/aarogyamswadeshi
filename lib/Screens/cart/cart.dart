@@ -239,12 +239,16 @@ class _CartState extends State<Cart> {
                                                           ["productId"];
                                                       cartController.cartlist
                                                           .removeAt(index);
+                                                      cartController
+                                                          .getCarttotal();
                                                       await deleteFromcart(pid)
                                                           .then((value) {
-                                                        getCart().then((value) {
-                                                          cartController
-                                                              .getCarttotal();
-                                                        });
+                                                        getCart()
+                                                            .then((value) {
+
+                                                               cartController
+                                                          .getCarttotal();
+                                                            });
                                                       });
                                                       cartController.cartlist
                                                           .refresh();
