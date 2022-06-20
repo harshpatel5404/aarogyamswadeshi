@@ -12,7 +12,6 @@ class ProductController extends GetxController {
 
   RxBool hasNextPage = true.obs;
   ScrollController scontroller = ScrollController();
-
   RxBool isFirstLoadRunning = false.obs;
 
   RxBool isLoadMoreRunning = false.obs;

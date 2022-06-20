@@ -243,12 +243,10 @@ class _CartState extends State<Cart> {
                                                           .getCarttotal();
                                                       await deleteFromcart(pid)
                                                           .then((value) {
-                                                        getCart()
-                                                            .then((value) {
-
-                                                               cartController
-                                                          .getCarttotal();
-                                                            });
+                                                        getCart().then((value) {
+                                                          cartController
+                                                              .getCarttotal();
+                                                        });
                                                       });
                                                       cartController.cartlist
                                                           .refresh();
@@ -451,7 +449,6 @@ class _CartState extends State<Cart> {
                                           onPressed: () async {
                                             EasyLoading.show(
                                                 status: "Loding...");
-
                                             var lastele =
                                                 cartController.cartlist.last;
                                             cartController.cartlist
@@ -465,6 +462,7 @@ class _CartState extends State<Cart> {
                                                         msg: value);
                                                     cartController.cartlist
                                                         .clear();
+                                                    clearCart();
                                                     cartController
                                                         .carttotal.value = 0;
                                                     cartController.iscartload

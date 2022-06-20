@@ -136,7 +136,7 @@ Future<String> placeOrder(Map data) async {
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      // print(data);
+      print(data);
       return "Order Placed successfully";
     } else {
       var data = jsonDecode(response.body);
