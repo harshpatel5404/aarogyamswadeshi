@@ -30,6 +30,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
     getsubategory();
     getAllproduct();
     getImages();
+    getOrders();
   }
 
   @override
@@ -138,19 +139,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                   fontSize: 27,
                                   fontWeight: FontWeight.w400),
                             ),
-                            // Container(
-                            //   height: 50,
-                            //   width: 50,
-                            //   decoration: BoxDecoration(
-                            //     color: Colors.white,
-                            //     borderRadius: BorderRadius.circular(60),
-                            //   ),
-                            //   child: Icon(
-                            //     Icons.arrow_forward,
-                            //     size: 27,
-                            //     color: Colors.black,
-                            //   ),
-                            // )
                           ],
                         ),
                       ),
@@ -198,19 +186,6 @@ class _AdminHomePageState extends State<AdminHomePage> {
                                   fontSize: 27,
                                   fontWeight: FontWeight.w400),
                             ),
-                            // Container(
-                            //   height: 50,
-                            //   width: 50,
-                            //   decoration: BoxDecoration(
-                            //     color: Colors.white,
-                            //     borderRadius: BorderRadius.circular(60),
-                            //   ),
-                            //   child: Icon(
-                            //     Icons.arrow_forward,
-                            //     size: 27,
-                            //     color: Colors.black,
-                            //   ),
-                            // )
                           ],
                         ),
                       ),

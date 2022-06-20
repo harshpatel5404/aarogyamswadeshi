@@ -24,9 +24,6 @@ class _ProductPageState extends State<ProductPage> {
   @override
   void initState() {
     super.initState();
-    // getCategory();
-    // getsubategory();
-    // getAllproduct();
   }
 
   @override
@@ -94,16 +91,6 @@ class _ProductPageState extends State<ProductPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Container(
-                            //   child: Text(
-                            //     data["categoryId"].toString(),
-                            //     style: TextStyle(
-                            //         fontSize: 15,
-                            //         color: Colors.black,
-                            //         fontWeight: fontweight.w500),
-                            //     textAlign: TextAlign.start,
-                            //   ),
-                            // ),
                             Text("ProductId : ${data['productId']}"),
                             Text("Name: ${data['productName']}"),
                             Text("GName: ${data['productGName']}"),

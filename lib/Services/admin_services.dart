@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:aarogyamswadeshi/Admin/Slider/slider_controller.dart';
+import 'package:aarogyamswadeshi/Admin/orders/order_status_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:aarogyamswadeshi/Services/api_services.dart';
@@ -9,6 +10,7 @@ import 'api_services.dart';
 import 'pref_manager.dart';
 
 SliderController sliderController = Get.put(SliderController());
+OrdersController ordersController = Get.put(OrdersController());
 
 Future sendAdminverification(String email) async {
   final response = await http.get(
@@ -160,6 +162,76 @@ Future deletetGalleryImage(imgId) async {
       return "Not Found Image";
     }
   } catch (e) {
+    return "Something went wrong!";
+  }
+}
+
+Future getOrders() async {
+  var token = await getToken();
+  ordersController.isOrderLoading.value = true;
+  ordersController.isOrdererror.value = true;
+  print(token);
+  try {
+    final response = await http.get(
+      Uri.parse(baseUrl + "/api/Order/GetOrderIds?OrderType=All"),
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      ordersController.orderslist.clear();
+      ordersController.orderslist.value = data["data"];
+      if (ordersController.orderslist.isEmpty) {
+        ordersController.isOrderLoading.value = false;
+      }
+      print(data["data"]);
+      print("order data get");
+    } else {
+      var data = jsonDecode(response.body);
+      ordersController.isOrdererror.value = false;
+      print(data);
+      print("order data not get");
+    }
+  } catch (e) {
+    ordersController.isOrdererror.value = false;
+  }
+}
+
+Future<String> updateOrderStatus(orderid, status) async {
+  var token = await getToken();
+  // print(base64Image);
+  try {
+    final response =
+        await http.post(Uri.parse(baseUrl + '/api/Order/UpdateOrderStatus'),
+            headers: {
+              "Content-Type": "application/json",
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $token',
+            },
+            body: json.encode({
+              "orderId": orderid,
+              "status": status,
+            }),
+            encoding: Encoding.getByName('utf-8'));
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+      print(data);
+      print("Order Update");
+      return "Order Status Updated";
+    } else {
+      var data = jsonDecode(response.body);
+      print(data);
+      print("Order not update");
+      return "Order Id not exists";
+    }
+  } catch (e) {
+    print("error");
+    // print(e);
     return "Something went wrong!";
   }
 }

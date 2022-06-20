@@ -1,6 +1,7 @@
 import 'package:aarogyamswadeshi/Admin/Slider/add_slider.dart';
 import 'package:aarogyamswadeshi/Admin/admin_home.dart';
 import 'package:aarogyamswadeshi/Admin/category/category_page.dart';
+import 'package:aarogyamswadeshi/Admin/orders/order_status.dart';
 import 'package:aarogyamswadeshi/Admin/product/product_page.dart';
 import 'package:aarogyamswadeshi/Admin/subcategory/subcategory_page.dart';
 import 'package:aarogyamswadeshi/Constants/constants.dart';
@@ -63,12 +64,20 @@ class Drawerbar extends StatelessWidget {
             },
           ),
           ListTile(
+            title: Text("Orders"),
+            // trailing: Icon(Icons.),
+            onTap: () {
+              Get.to(OrderStatus());
+            },
+          ),
+          ListTile(
             title: Text("Add Gallery"),
             // trailing: Icon(Icons.),
             onTap: () {
               Get.to(AddSliderImages());
             },
           ),
+
           ListTile(
             title: Text("Logout"),
             trailing: Icon(Icons.logout),
